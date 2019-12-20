@@ -1,0 +1,131 @@
+[bar/bar1]
+monitor = ${env:MONITOR1}
+modules-right = cpu | gpu | ram | network1 | volume | calendar 
+modules-center = title
+modules-left = workspaces | music
+tray-position = right
+
+override-redirect = true
+wm-restack = i3
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+bottom = true
+height = 20
+font-0 = Noto Sans:size=10;1
+font-1 = FontAwesome:size=10;1
+font-2 = Wuncon Siji:antialias=false:pixelsize=10;1
+font-3 = source han sans jp:size=10;1
+padding-right = 2
+padding-left = 2
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+
+[bar/bar2]
+monitor = ${env:MONITOR2}
+modules-left = workspaces
+
+override-redirect = true
+wm-restack = i3
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+bottom = true
+height = 20
+font-0 = Noto Sans:size=10;1
+padding-right = 2
+padding-left = 2
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+
+[colors]
+background = #282828
+foreground = #dcdccd
+primary = #9A91AC
+secondary = #CAA7BD
+alert = #ff6961
+
+
+[module/|]
+type = custom/text
+content = |
+content-padding = 2
+content-foreground = ${colors.primary}
+
+
+[module/calendar]
+type = custom/script
+exec = ~/Build/polybar-scripts/popup-calendar.sh
+interval = 1
+click-left = ~/Build/polybar-scripts/popup-calendar.sh --popup &
+
+
+[module/volume]
+type = internal/pulseaudio
+format-volume = <label-volume>
+mapped = true
+label-volume = "VOL %percentage%%"
+label-muted = "MUTED"
+
+
+[module/workspaces]
+type = internal/i3
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = true
+label-mode-padding = 1
+label-focused-padding = 1
+label-focused-foreground = ${colors.secondary}
+label-unfocused-padding = 1
+label-visible-padding = 1
+label-urgent-padding = 1
+label-urgent-background = ${colors.alert}
+pin-workspaces = true
+
+
+[module/title]
+type = internal/xwindow
+format = <label>
+label= "%title%"
+label-maxlen = 125
+
+
+[module/cpu]
+type = internal/cpu
+label = "CPU %percentage%%"
+interval = 3.0
+
+
+[module/ram]
+type = internal/memory
+label = "RAM %gb_used%"
+interval = 5.0
+
+
+[module/network1]
+type = internal/network
+interface = enp0s31f6
+format-connected = <label-connected>
+label-connected = "DOWN %downspeed%  -  UP %upspeed%"
+format-disconnected = <label-disconnected>
+label-disconnected = DISCONNECTED
+interval = 3.0
+
+
+[module/gpu]
+type = custom/script
+exec = nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{ print "GPU",""$1"","%"}'
+interval = 3.0
+
+
+[module/music]
+type = custom/script
+exec = ~/Build/polybar-scripts/player-mpris-simple.sh
+interval = 3
+click-left = playerctl previous
+click-right = playerctl next
+click-middle = playerctl play-pause
+label-maxlen = 65
+
