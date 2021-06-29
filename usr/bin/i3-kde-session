@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# Start a KDE session with the i3 tiling window manager
+#
+
+export KDEWM='/usr/bin/i3'
+
+exec startplasma-x11
