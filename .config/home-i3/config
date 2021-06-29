@@ -161,5 +161,6 @@ exec_always --no-startup-id ~/.config/i3/i3-alternating-layout/alternating_layou
 
 # On startup
 exec_always --no-startup-id compton --config ~/.config/compton.conf -b
+exec_always --no-startup-id nvidia-settings -a AllowVRR=0
 exec_always --no-startup-id (sleep 2; ~/.config/polybar/launch-polybar.sh) &
 exec_always --no-startup-id (sleep 2; feh --recursive --randomize --bg-fill ~/Pictures/wallpapers/* ~/Pictures/wallpapers/*)
