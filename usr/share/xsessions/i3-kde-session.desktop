@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=KDE/i3
+Comment=KDE session with the i3 tiling window manager
+TryExec=/usr/bin/i3-kde-session
+Exec=/usr/bin/i3-kde-session
+Type=XSession
