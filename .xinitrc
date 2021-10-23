@@ -53,5 +53,10 @@ fi
 #xterm -geometry 80x50+494+51 &
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
-#exec startplasma-x11
-exec i3-kde-session
+
+# Plasma DE
+export DESKTOP_SESSION=plasma &
+exec startplasma-x11
+
+# Plasma-i3 hybrid, requires the session file to be in place
+# exec i3-kde-session
