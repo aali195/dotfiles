@@ -18,6 +18,9 @@ zstyle ':prezto:*:*' color 'yes'
 # Add additional directories to load prezto modules from
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zprezto-contrib
 
+# Allow module overrides when pmodule-dirs causes module name collisions
+# zstyle ':prezto:load' pmodule-allow-overrides 'yes'
+
 # Set the Zsh modules to load (man zshmodules).
 # zstyle ':prezto:load' zmodule 'attr' 'stat'
 
@@ -35,10 +38,11 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'prompt' \
-  'syntax-highlighting' \
   'history-substring-search' \
-  'autosuggestions'
+  'autosuggestions' \
+  'syntax-highlighting' \
+  'git' \
+  'prompt'
 
 #
 # Autosuggestions
@@ -51,7 +55,7 @@ zstyle ':prezto:load' pmodule \
 # Completions
 #
 
-# Set the entries to ignore in static */etc/hosts* for host completion.
+# Set the entries to ignore in static '/etc/hosts' for host completion.
 # zstyle ':prezto:module:completion:*:hosts' etc-host-ignores \
 #   '0.0.0.0' '127.0.0.1'
 
@@ -121,7 +125,7 @@ zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
 # for longer or 'full' (with '~' expansion) for even longer prompt display.
-# zstyle ':prezto:module:prompt' pwd-length 'short'
+zstyle ':prezto:module:prompt' pwd-length 'long'
 
 # Set the prompt to display the return code along with an indicator for non-zero
 # return codes. This is not supported by all prompts.
@@ -167,13 +171,13 @@ zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
- zstyle ':prezto:module:syntax-highlighting' highlighters \
-   'main' \
-   'brackets' \
-   'pattern' \
-   'line' \
-   'cursor' \
-   'root'
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+  'main' \
+  'brackets' \
+  'pattern' \
+  'line' \
+  'cursor' \
+  'root'
 #
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
@@ -182,15 +186,15 @@ zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 #   'function' 'bg=blue'
 #
 # Set syntax pattern styles.
- zstyle ':prezto:module:syntax-highlighting' pattern \
-   'rm*-rf*' 'fg=white,bold,bg=red'
+zstyle ':prezto:module:syntax-highlighting' pattern \
+  'rm*-rf*' 'fg=white,bold,bg=red'
 
 #
 # Terminal
 #
 
 # Auto set the tab and window titles.
-zstyle ':prezto:module:terminal' auto-title 'yes'
+# zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
 # zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
@@ -224,4 +228,4 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 # Enabled safe options. This aliases cp, ln, mv and rm so that they prompt
 # before deleting or overwriting files. Set to 'no' to disable this safer
 # behavior.
-zstyle ':prezto:module:utility' safe-ops 'yes'
+# zstyle ':prezto:module:utility' safe-ops 'yes'
